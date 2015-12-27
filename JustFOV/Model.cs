@@ -17,7 +17,7 @@ namespace JustFOV
 
         public Model()
         {
-            var processes = Process.GetProcessesByName("JustCause3_patched");
+            var processes = Process.GetProcessesByName("JustCause3");
             if (processes.Length == 0)
             {
                 MessageBox.Show("Failed to find JustCause3.exe process", "Error", MessageBoxButton.OK,
@@ -92,8 +92,9 @@ namespace JustFOV
 
         #region Offsets
 
-        private readonly IntPtr _cameraManagerPtr = new IntPtr(0x142E6A908);
-        private readonly IntPtr _setFovCall = new IntPtr(0x143A490DF);
+        // Patch 1.021
+        private readonly IntPtr _cameraManagerPtr = new IntPtr(0x142e72a58);
+        private readonly IntPtr _setFovCall = new IntPtr(0x143a546cf);
 
         private const int CurrentCameraOffset = 0x5c0;
         private const int CameraFlagsOffset = 0x55e;
