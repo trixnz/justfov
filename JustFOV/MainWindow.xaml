@@ -5,9 +5,21 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:JustFOV"
         mc:Ignorable="d"
-        Title="Just FOV" Height="72.664" Width="281.368" ResizeMode="CanMinimize">
+        Title="Just FOV" Height="120" Width="280" ResizeMode="CanMinimize">
     <Grid>
-        <Slider Margin="10,10,82,0" VerticalAlignment="Top" Value="{Binding Fov, Mode=TwoWay}" Minimum="1" Maximum="90" />
-        <TextBlock Text="{Binding Fov, StringFormat=FOV:{0}}" Margin="0,10,10,0" VerticalAlignment="Top" HorizontalAlignment="Right" Width="67" />
+        <Grid.RowDefinitions>
+            <RowDefinition Height="30"></RowDefinition>
+            <RowDefinition Height="30"></RowDefinition>
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="200"></ColumnDefinition>
+            <ColumnDefinition Width="*"></ColumnDefinition>
+        </Grid.ColumnDefinitions>
+        
+        <Slider Grid.Row="0" Grid.Column="0" Margin="5" Value="{Binding Fov, Mode=TwoWay}" x:Name="FOVSlider" />
+        <TextBlock Grid.Row="0" Grid.Column="1" Margin="5" Text="{Binding Fov, StringFormat=FOV:{0}}" />
+
+        <TextBox Grid.Row="1" Grid.Column="0" Margin="5" Text="{Binding Fov, Mode=TwoWay}" x:Name="FOVText"></TextBox>
+        <Button Grid.Row="1" Grid.Column="1" Margin="5" Content="Set FOV" x:Name="SetFov"></Button>
     </Grid>
 </Window>
