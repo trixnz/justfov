@@ -93,14 +93,22 @@ namespace JustFOV
         #region Offsets
 
         // Patch 1.021
+        //private readonly IntPtr _cameraManagerPtr = new IntPtr(0x142e72a58);
+        //private readonly IntPtr _setFovCall = new IntPtr(0x143a546cf);
+
+        //private const int CurrentCameraOffset = 0x5c0;
+        //private const int CameraFlagsOffset = 0x55e;
+        //private const int FovOffset1 = 0x580;
+        //private const int FovOffset2 = 0x584;
+
+        // Patch 20/01/2016
         private readonly IntPtr _cameraManagerPtr = new IntPtr(0x142e72a58);
-        private readonly IntPtr _setFovCall = new IntPtr(0x143a546cf);
+        private readonly IntPtr _setFovCall = new IntPtr(0x143229d70);
 
         private const int CurrentCameraOffset = 0x5c0;
         private const int CameraFlagsOffset = 0x55e;
         private const int FovOffset1 = 0x580;
         private const int FovOffset2 = 0x584;
-
         #endregion
 
         #region INotifyPropertyChanged
