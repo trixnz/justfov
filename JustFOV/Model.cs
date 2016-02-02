@@ -4,6 +4,8 @@ using System.Diagnostics;
 using System.Runtime.CompilerServices;
 using System.Windows;
 using JustFOV.Annotations;
+using JustFOV.Util;
+using System.Windows.Input;
 
 namespace JustFOV
 {
@@ -14,6 +16,9 @@ namespace JustFOV
         private readonly IntPtr _handle;
 
         private readonly byte[] _originalCallBytes;
+
+        private ICommand _restoreDefaultFOVCommand;
+        private float _defaultFOV = 34.89f;
 
         public Model()
         {
@@ -48,9 +53,18 @@ namespace JustFOV
             get { return GetFov()*RadToDeg; }
             set
             {
-                OnPropertyChanged();
-
                 PatchFov(value*DegToRad);
+
+                OnPropertyChanged();
+            }
+        }
+
+        public ICommand RestoreDefaultFOV
+        {
+            get
+            {
+                return _restoreDefaultFOVCommand ??
+                    (_restoreDefaultFOVCommand = new RelayCommand(p => Fov = _defaultFOV));
             }
         }
 

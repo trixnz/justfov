@@ -21,5 +21,7 @@
 
         <TextBox Grid.Row="1" Grid.Column="0" Margin="5" Text="{Binding Fov, Mode=TwoWay}" x:Name="FOVText"></TextBox>
         <Button Grid.Row="1" Grid.Column="1" Margin="5" Content="Set FOV" x:Name="SetFov"></Button>
+
+        <Button Grid.Row="1" Grid.Column="1" Margin="5,26.667,4.667,-16.333" Command="{Binding RestoreDefaultFOV}" Content="Default" />
     </Grid>
 </Window>
