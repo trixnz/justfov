@@ -116,8 +116,17 @@ namespace JustFOV
         //private const int FovOffset2 = 0x584;
 
         // Patch 20/01/2016
-        private readonly IntPtr _cameraManagerPtr = new IntPtr(0x142e72a58);
-        private readonly IntPtr _setFovCall = new IntPtr(0x143229d70);
+        //private readonly IntPtr _cameraManagerPtr = new IntPtr(0x142e72a58);
+        //private readonly IntPtr _setFovCall = new IntPtr(0x143229d70);
+
+        //private const int CurrentCameraOffset = 0x5c0;
+        //private const int CameraFlagsOffset = 0x55e;
+        //private const int FovOffset1 = 0x580;
+        //private const int FovOffset2 = 0x584;
+
+        // Patch 07/03/2016
+        private readonly IntPtr _cameraManagerPtr = new IntPtr(0x142F0CB58);
+        private readonly IntPtr _setFovCall = new IntPtr(0x143B3BC2D);
 
         private const int CurrentCameraOffset = 0x5c0;
         private const int CameraFlagsOffset = 0x55e;
