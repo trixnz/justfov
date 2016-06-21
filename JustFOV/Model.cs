@@ -125,13 +125,38 @@ namespace JustFOV
         //private const int FovOffset2 = 0x584;
 
         // Patch 07/03/2016
-        private readonly IntPtr _cameraManagerPtr = new IntPtr(0x142F0CB58);
-        private readonly IntPtr _setFovCall = new IntPtr(0x143B3BC2D);
+        //private readonly IntPtr _cameraManagerPtr = new IntPtr(0x142F0CB58);
+        //private readonly IntPtr _setFovCall = new IntPtr(0x143B3BC2D);
+
+        //private const int CurrentCameraOffset = 0x5c0;
+        //private const int CameraFlagsOffset = 0x55e;
+        //private const int FovOffset1 = 0x580;
+        //private const int FovOffset2 = 0x584;
+
+        // Patch version 1.04 (03/06/2016)
+        // NOTE(xforce): If I were to inject something in the process I could make this work independent of version
+        // But I don't think that was the intention of this program
+        // Or I write some memory search using ReadProcessMemory but that is slow
+        // So on the next update use this to find the address to CameraManager easily
+        // Or use a dump in IDA look for the ctor of CCameraManager
+        // 48 8B 05 ? ? ? ? F3 0F 10 05 ? ? ? ? 4D 89 C1 48 8B 90 ? ? ? ? 4C 8D 41 0C 31 C0
+        // This is a IDA compatible pattern
+
+        // This is the pattern for the SetFOV Call
+        // E8 ? ? ? ? 0F 28 BC 24 ? ? ? ? 0F 28 B4 24 ? ? ? ? 48 8B 9C 24 ? ? ? ? 48 81 C4 ? ? ? ?
+        // I however thing it's not required to patch it as this is only called
+        // when the camera manager gets created
+        // Or maybe I just have the wrong call
+        // But I was not able to acquire the versions used previously, so ye
+
+        private readonly IntPtr _cameraManagerPtr = new IntPtr(0x142EBEBD0);
+        private readonly IntPtr _setFovCall = new IntPtr(0x143ADAD71);
 
         private const int CurrentCameraOffset = 0x5c0;
         private const int CameraFlagsOffset = 0x55e;
         private const int FovOffset1 = 0x580;
         private const int FovOffset2 = 0x584;
+
         #endregion
 
         #region INotifyPropertyChanged
