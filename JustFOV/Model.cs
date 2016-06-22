@@ -20,6 +20,9 @@ namespace JustFOV
         private ICommand _restoreDefaultFOVCommand;
         private float _defaultFOV = 34.89f;
 
+        private bool _fovHackEnabled;
+        private float _fovRecall;
+
         public Model()
         {
             var processes = Process.GetProcessesByName("JustCause3");
@@ -43,6 +46,7 @@ namespace JustFOV
             }
 
             _originalCallBytes = Natives.ReadBytes(_handle, _setFovCall, 5);
+
             PatchSetFov(true);
         }
 
@@ -68,6 +72,14 @@ namespace JustFOV
             }
         }
 
+        public bool FovHackEnabled
+        {
+            get
+            {
+                return _fovHackEnabled;
+            }            
+        }
+
         #endregion
 
         ~Model()
@@ -75,14 +87,23 @@ namespace JustFOV
             PatchSetFov(false);
         }
 
-        private void PatchSetFov(bool overrideEnable)
+        public void PatchSetFov(bool overrideEnable)
         {
+            _fovHackEnabled = overrideEnable;
+
             Natives.WriteBytes(_handle, _setFovCall,
                 overrideEnable ? new byte[] {0x90, 0x90, 0x90, 0x90, 0x90} : _originalCallBytes);
         }
 
+        public void RecallFov()
+        {
+            PatchFov(_fovRecall);
+        }
+
         private void PatchFov(float newFov)
         {
+            _fovRecall = newFov;
+
             var cameraManager = Natives.ReadIntPtr(_handle, _cameraManagerPtr);
             var currentCamera = Natives.ReadIntPtr(_handle, cameraManager + CurrentCameraOffset);
 

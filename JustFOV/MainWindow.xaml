@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:JustFOV"
         mc:Ignorable="d"
-        Title="Just FOV" Height="120" Width="280" ResizeMode="CanMinimize">
+        Title="Just FOV" Height="160" Width="280" ResizeMode="CanMinimize">
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="30"></RowDefinition>
@@ -15,7 +15,7 @@
             <ColumnDefinition Width="200"></ColumnDefinition>
             <ColumnDefinition Width="*"></ColumnDefinition>
         </Grid.ColumnDefinitions>
-        
+
         <Slider Grid.Row="0" Grid.Column="0" Margin="5" Value="{Binding Fov, Mode=TwoWay}" x:Name="FOVSlider" />
         <TextBlock Grid.Row="0" Grid.Column="1" Margin="5" Text="{Binding Fov, StringFormat=FOV:{0}}" />
 
@@ -23,5 +23,6 @@
         <Button Grid.Row="1" Grid.Column="1" Margin="5" Content="Set FOV" x:Name="SetFov"></Button>
 
         <Button Grid.Row="1" Grid.Column="1" Margin="5,26.667,4.667,-16.333" Command="{Binding RestoreDefaultFOV}" Content="Default" />
+        <Label x:Name="label" Content="NumPad / -  Incr. FOV&#xD;&#xA;NumPad * - Decr. FOV&#xD;&#xA;NumPad Period - Toggle Override" Margin="5,31,5,-59" Grid.Row="1" FontSize="10" VerticalContentAlignment="Stretch"/>
     </Grid>
 </Window>
