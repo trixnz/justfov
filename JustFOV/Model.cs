@@ -77,7 +77,7 @@ namespace JustFOV
             get
             {
                 return _fovHackEnabled;
-            }            
+            }
         }
 
         #endregion
@@ -170,8 +170,17 @@ namespace JustFOV
         // Or maybe I just have the wrong call
         // But I was not able to acquire the versions used previously, so ye
 
-        private readonly IntPtr _cameraManagerPtr = new IntPtr(0x142EBEBD0);
-        private readonly IntPtr _setFovCall = new IntPtr(0x143ADAD71);
+        //private readonly IntPtr _cameraManagerPtr = new IntPtr(0x142EBEBD0);
+        //private readonly IntPtr _setFovCall = new IntPtr(0x143ADAD71);
+
+        //private const int CurrentCameraOffset = 0x5c0;
+        //private const int CameraFlagsOffset = 0x55e;
+        //private const int FovOffset1 = 0x580;
+        //private const int FovOffset2 = 0x584;
+
+        // Patch version 1.05 (29/07/2016)
+        private readonly IntPtr _cameraManagerPtr = new IntPtr(0x142ED0E20);
+        private readonly IntPtr _setFovCall = new IntPtr(0x143AEFF41);
 
         private const int CurrentCameraOffset = 0x5c0;
         private const int CameraFlagsOffset = 0x55e;
