@@ -25,7 +25,7 @@ namespace JustFOV
 
         public Model()
         {
-            var processes = Process.GetProcessesByName("JustCause3");
+            var processes = Process.GetProcessesByName("PlayJCMP");
             if (processes.Length == 0)
             {
                 MessageBox.Show("Failed to find JustCause3.exe process", "Error", MessageBoxButton.OK,
